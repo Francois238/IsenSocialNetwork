@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "476304087798",
+    "project_id": "isensocialnetwork-77ff6",
+    "storage_bucket": "isensocialnetwork-77ff6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476304087798:android:693e87cd7dbb892de72ad7",
+        "android_client_info": {
+          "package_name": "fr.isen.lesnullos.isensocialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476304087798-8cjm9n19hl1qiasov8ur8b66inmert1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFOumQwuNLGbWF3zxxaZ7cKnpOKqL3Eg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476304087798-8cjm9n19hl1qiasov8ur8b66inmert1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
