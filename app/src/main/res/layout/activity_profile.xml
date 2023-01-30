@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageProfilPost"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.059" />
 
     <TextView
@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <ImageView
-        android:id="@+id/imageProfilPost"
+        android:id="@+id/imageView"
         android:layout_width="125dp"
         android:layout_height="107dp"
         android:layout_marginStart="16dp"
