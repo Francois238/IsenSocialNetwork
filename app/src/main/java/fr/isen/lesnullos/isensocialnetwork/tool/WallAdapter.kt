@@ -3,8 +3,10 @@ package fr.isen.lesnullos.isensocialnetwork.tool
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.R
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 
@@ -25,6 +27,7 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nomPost: TextView = itemView.findViewById(R.id.nomPost)
+        val iconePost : ImageView = itemView.findViewById(R.id.iconePost)
 
 
 
@@ -59,7 +62,23 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
         val textView = viewHolder.nomPost
         textView.text = post.nom
 
+        val imageView = viewHolder.iconePost
+
+        var image = post.url
+        if (image.isNullOrEmpty()){
+            image = "a"
+        }
+
+        Picasso.get().load(image)
+            .error(R.drawable.capture_d_cran_2023_01_31___11_33_39)
+            .centerCrop()
+            .fit()
+            .into(imageView)
     }
+
+
+
+
 
     // Returns the total count of items in the list
     override fun getItemCount(): Int {
