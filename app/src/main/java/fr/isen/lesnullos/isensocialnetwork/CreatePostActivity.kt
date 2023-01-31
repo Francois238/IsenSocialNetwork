@@ -24,15 +24,26 @@ import fr.isen.lesnullos.isensocialnetwork.model.User
 import java.io.File
 import java.io.FileOutputStream
 import com.google.firebase.auth.FirebaseAuth
+import android.app.ProgressDialog
+import java.io.IOException
+import java.util.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import fr.isen.lesnullos.isensocialnetwork.model.Post
 
 
 class CreatePostActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreatePostBinding
-    private val requestSelectedImage = 1
     private val database = Firebase.database
     private val myRef = database.getReference("user")
     private lateinit var auth: FirebaseAuth
 
+    var storage: FirebaseStorage? = null
+    var storageReference: StorageReference? = null
+
+    private var filePath: Uri? = null
+
+    private val PICK_IMAGE_REQUEST = 22
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +52,9 @@ class CreatePostActivity : AppCompatActivity() {
         binding = ActivityCreatePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //recuperer le nom et la photo du user qui post
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage!!.reference;
+
         val user = auth.currentUser
         user?.uid
         val sharedPreferences = getSharedPreferences("user_id", Context.MODE_PRIVATE)
@@ -53,8 +66,6 @@ class CreatePostActivity : AppCompatActivity() {
                 for (postSnapshot in snapshot.children) {
                     val value = postSnapshot.getValue<User>()
                     if ((value != null) && (value.id == id)) {
-                        println("id: ${value.id}")
-                        println("name : ${value.name}")
                         val nameuser = value.name
                         binding.nameUserPost.text = nameuser
                     }
@@ -64,19 +75,13 @@ class CreatePostActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
-        //recuperer le texte et le title user
-        val text = binding.texteInputPost.text.toString()
-        val title = binding.titlePost.text.toString()
-
         binding.publishButtonPost.setOnClickListener {
-            publishPost(text,title)
+            uploadImage()
             Toast.makeText( applicationContext, "Poste publié", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, WallActivity::class.java)
             startActivity(intent)
         }
 
-        //bouton quitter -> retour sur fil
         binding.quittePost.setOnClickListener {
             val intent = Intent(this, WallActivity::class.java)
             startActivity(intent)
@@ -89,58 +94,102 @@ class CreatePostActivity : AppCompatActivity() {
 
 
         binding.imagePicturePost.setOnClickListener {
-            dispatchSelectPictureIntent()
+            selectImage()
         }
 
     }
-
+    private fun selectImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(
+                intent,
+                "Select Image from here..."
+            ),
+            PICK_IMAGE_REQUEST
+        )
+    }
     @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == requestSelectedImage && resultCode == RESULT_OK && data != null) {
-            val selectedImageUri = data.data
-
-            if (selectedImageUri != null) {
-                saveSelectedImageToFile(selectedImageUri)
-                displaySavedImage()
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(
+            requestCode,
+            resultCode,
+            data
+        )
+        if (requestCode == PICK_IMAGE_REQUEST && data != null && data.data != null) {
+            filePath = data.data
+            try {
+                val bitmap = MediaStore.Images.Media
+                    .getBitmap(
+                        contentResolver,
+                        filePath
+                    )
+                binding.imageViewPost.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
         }
     }
-    private fun dispatchSelectPictureIntent() {
-        val selectPictureIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        if (selectPictureIntent.resolveActivity(packageManager) != null) {
-            selectPictureIntent.type="image/*"
-            startActivityForResult(selectPictureIntent, requestSelectedImage)
+    private fun uploadImage() {
+        if (filePath != null) {
+            val progressDialog = ProgressDialog(this)
+            progressDialog.setTitle("Uploading...")
+            progressDialog.show()
+            val ref = storageReference
+                ?.child(
+                    "images/"
+                            + UUID.randomUUID().toString()
+                )
+            if (ref != null) {
+                ref.putFile(filePath!!)
+                    .addOnSuccessListener {
+                        progressDialog.dismiss()
+                        Toast
+                            .makeText(
+                                this@CreatePostActivity,
+                                "Image Uploaded!!",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                    .addOnFailureListener { e -> // Error, Image not uploaded
+                        progressDialog.dismiss()
+                        Toast
+                            .makeText(
+                                this@CreatePostActivity,
+                                "Failed " + e.message,
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                    .addOnProgressListener { taskSnapshot ->
+                        val progress = (100.0
+                                * taskSnapshot.bytesTransferred
+                                / taskSnapshot.totalByteCount)
+                        progressDialog.setMessage(
+                            "Uploaded "
+                                    + progress.toInt() + "%"
+                        )
+                    }
+                    .addOnSuccessListener {
+                        ref.downloadUrl.addOnSuccessListener { uri ->
+                            val url = uri.toString()
+                            println("url acces : $url")
+
+                            val text = binding.texteInputPost.text.toString()
+
+                            val database = Firebase.database
+                            val myRef = database.getReference("post")
+
+                            myRef.push().setValue(Post(text, url))
+                        }
+                    }
+            }
         }
     }
-    private fun saveSelectedImageToFile(selectedImageUri: Uri) {
-        val inputStream = contentResolver.openInputStream(selectedImageUri)
-        val imageBitmap = BitmapFactory.decodeStream(inputStream)
-        inputStream?.close()
-
-        val directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val file = File(directory, "selected_image.jpg")
-        val outputStream = FileOutputStream(file)
-        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-        outputStream.flush()
-        outputStream.close()
-    }
-    private fun displaySavedImage() {
-        val directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val file = File(directory, "selected_image.jpg")
-        if (file.exists()) {
-            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-            binding.imageViewPost.setImageBitmap(bitmap)
-        }
-    }
-
-    private fun publishPost(text:String, title: String) {
-        val database = Firebase.database
-        val myRef = database.getReference("postCreate")
-        data class StringData(val string1: String, val string2: String)
-        val stringData = StringData(text,title)
-
-        myRef.push().setValue(stringData)
-    }
-
 }
