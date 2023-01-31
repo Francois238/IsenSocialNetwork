@@ -62,4 +62,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailNomPost" />
 
+    <ImageView
+        android:id="@+id/imagePost"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/detailNomPost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/capture_d_cran_2023_01_31___11_33_39" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

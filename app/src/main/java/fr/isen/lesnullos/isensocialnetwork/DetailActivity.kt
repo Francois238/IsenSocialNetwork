@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -12,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityDetailBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import fr.isen.lesnullos.isensocialnetwork.model.PostTransmis
@@ -37,6 +39,16 @@ class DetailActivity : AppCompatActivity() {
             (intent.extras!!.getBinder("Post") as ObjectWrapperForBinder?)!!.data as PostTransmis
 
         binding.detailNomPost.text = post.post.nom
+
+        val imageView = findViewById<ImageView>(R.id.imagePost)
+
+        if (post.post.image != null) {
+            Picasso.get().load(post.post.image)
+                .error(R.drawable.capture_d_cran_2023_01_31___11_33_39)
+                .centerCrop()
+                .fit()
+                .into(imageView)
+        }
 
         displayCommentaire()
 
@@ -84,6 +96,8 @@ class DetailActivity : AppCompatActivity() {
             else{
                 post.post.commentaire?.add(commentaire)
             }
+
+            this.displayCommentaire()
 
 
             this.listPost[this.post.position] = this.post.post

@@ -64,7 +64,7 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
 
         val imageView = viewHolder.iconePost
 
-        var image = post.url
+        var image = post.image
         if (image.isNullOrEmpty()){
             image = "a"
         }
