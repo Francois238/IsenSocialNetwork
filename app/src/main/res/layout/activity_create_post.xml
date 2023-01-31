@@ -60,25 +60,43 @@
         android:background="@drawable/picture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
+        app:layout_constraintVertical_bias="0.834" />
+
+    <ImageView
+        android:id="@+id/imageViewPost"
+        android:layout_width="266dp"
+        android:layout_height="116dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.23"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="345dp"
-        android:layout_height="440dp"
+        android:layout_width="336dp"
+        android:layout_height="83dp"
         android:layout_marginTop="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageProfilPost"
-        app:layout_constraintVertical_bias="0.026">
+        app:layout_constraintVertical_bias="0.266">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/texteInputPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Qu'allez vous raconter aujourd'hui ?" />
+            android:hint="@string/qu_allez_vous_raconter_aujourd_hui"
+            app:counterEnabled="true"
+            app:counterMaxLength="500"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,11 +104,31 @@
         android:id="@+id/imageDocPost"
         android:layout_width="61dp"
         android:layout_height="52dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/doc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
+        app:layout_constraintVertical_bias="0.828" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="335dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageProfilPost">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titlePost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/titre_de_votre_post"
+            app:hintAnimationEnabled="false"
+            app:counterEnabled="true"
+            app:counterMaxLength="60"
+            app:errorEnabled="true"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

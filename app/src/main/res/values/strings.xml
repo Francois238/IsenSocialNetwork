@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">IsenSocialNetwork</string>
+    <string name="qu_allez_vous_raconter_aujourd_hui">Qu\'allez vous raconter aujourd\'hui ?</string>
+    <string name="titre_de_votre_post">Titre de votre post</string>
 </resources>
