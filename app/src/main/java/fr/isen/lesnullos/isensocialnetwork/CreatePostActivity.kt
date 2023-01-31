@@ -2,22 +2,33 @@ package fr.isen.lesnullos.isensocialnetwork
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityCreatePostBinding
+import fr.isen.lesnullos.isensocialnetwork.model.Post
 
 class CreatePostActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCreatePostBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_post)
 
-        //bouton document
+        binding = ActivityCreatePostBinding.inflate(layoutInflater)
 
-        //bouton image
+        setContentView(binding.root)
 
-        //bouton quitter -> retour sur fil
+        binding.publishButtonPost.setOnClickListener {
+            //je veux recuperer le champ texte
+            val text = binding.texteInputPost.text
 
-        //bouton publier
+            val database = Firebase.database
+            val myRef = database.getReference("post")
 
-        //recuperer le texte user
 
+            myRef.push().setValue(Post(text.toString()))
+
+
+        }
 
     }
+
 }

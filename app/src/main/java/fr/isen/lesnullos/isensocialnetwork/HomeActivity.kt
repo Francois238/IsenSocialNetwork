@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -49,8 +50,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun connectionUser(){
 
-        val emailEditText = findViewById<EditText>(R.id.adressemail)
-        val passwordEditText = findViewById<EditText>(R.id.password)
+        val emailEditText = findViewById<TextInputEditText>(R.id.mailaddress)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.motdepasse)
 
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
@@ -62,14 +63,14 @@ class HomeActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     //val id = user?.uid
-                    val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
-                    val editor = sharedPreferences.edit()
-                    editor.putString("user_id", user?.uid)
-                    editor.apply()
+                    //val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
+                   // val editor = sharedPreferences.edit()
+                   // editor.putString("user_id", user?.uid)
+                   // editor.apply()
                     Log.d(ContentValues.TAG, "L'utilisateur est connecté: $user")
                     Toast.makeText(this, "CLick Login", Toast.LENGTH_SHORT).show();
-                   //val intent = Intent(this@HomeActivity, MainActivity::class.java)
-                   //startActivity(intent);
+                   val intent = Intent(this@HomeActivity, CreatePostActivity::class.java)
+                   startActivity(intent);
                 } else {
                     Log.e(ContentValues.TAG, "Erreur de connexion: ${task.exception}")
                     // Affichez un message d'erreur en cas d'échec
