@@ -4,10 +4,13 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityLoginBinding
 
 
@@ -26,6 +29,18 @@ class LoginActivity : AppCompatActivity() {
 
             connectionUser()
         }
+
+
+        //ecriture bdd
+        findViewById<Button>(R.id.btnLogin).setOnClickListener{
+            val database = Firebase.database
+            val myRef = database.getReference("users")
+
+            //myRef.push().setValue(Users("Bob"))
+
+            myRef.setValue("Alice")
+        }
+
 
 /*
         //lecture bdd
