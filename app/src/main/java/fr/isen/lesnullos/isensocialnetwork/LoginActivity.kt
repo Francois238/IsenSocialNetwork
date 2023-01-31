@@ -1,6 +1,7 @@
 package fr.isen.lesnullos.isensocialnetwork
 
 import android.content.ContentValues
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,43 +29,8 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
 
             connectionUser()
+
         }
-
-
-        //ecriture bdd
-        findViewById<Button>(R.id.btnLogin).setOnClickListener{
-            val database = Firebase.database
-            val myRef = database.getReference("users")
-
-            //myRef.push().setValue(Users("Bob"))
-
-            myRef.setValue("Alice")
-        }
-
-
-/*
-        //lecture bdd
-
-        Firebase.database.getReference("message").addValueEventListener(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.getValue<String>()
-                Log.d("TAG", "Value is: $value")
-                findViewById<TextView>(R.id.textView).text = value
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.d("TAG", "Failed to read value.", error.toException())
-            }
-        })
-
-        //ecriture bdd
-        findViewById<Button>(R.id.button).setOnClickListener{
-            val database = Firebase.database
-            val myRef = database.getReference("message")
-            myRef.setValue("Hello, World!")
-        }*/
     }
 
 
@@ -82,6 +48,11 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
+                    //val id = user?.uid
+                    val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_id", user?.uid)
+                    editor.apply()
                     Log.d(ContentValues.TAG, "L'utilisateur est connecté: $user")
                 } else {
                     Log.e(ContentValues.TAG, "Erreur de connexion: ${task.exception}")
@@ -91,6 +62,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
-
 
 }
