@@ -6,25 +6,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityLoginBinding
+import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityHomeBinding
 
 
-class LoginActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_home)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
@@ -37,8 +34,8 @@ class LoginActivity : AppCompatActivity() {
         binding.btnRegisterAccont.setOnClickListener {
             Toast.makeText(this, "Click Register", Toast.LENGTH_SHORT).show()
 
-            //val intent = Intent(this@LoginActivity, ProfileFormActivity::class.java)
-           // startActivity(intent);
+            val intent = Intent(this@HomeActivity, ProfileFormActivity::class.java)
+            startActivity(intent);
         }
 
         binding.forgetpassword.setOnClickListener {
@@ -71,8 +68,8 @@ class LoginActivity : AppCompatActivity() {
                     editor.apply()
                     Log.d(ContentValues.TAG, "L'utilisateur est connecté: $user")
                     Toast.makeText(this, "CLick Login", Toast.LENGTH_SHORT).show();
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent);
+                   //val intent = Intent(this@HomeActivity, MainActivity::class.java)
+                   //startActivity(intent);
                 } else {
                     Log.e(ContentValues.TAG, "Erreur de connexion: ${task.exception}")
                     // Affichez un message d'erreur en cas d'échec
