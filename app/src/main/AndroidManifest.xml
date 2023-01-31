@@ -12,13 +12,13 @@
         android:theme="@style/Theme.IsenSocialNetwork"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileFormActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".WallActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileFormActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

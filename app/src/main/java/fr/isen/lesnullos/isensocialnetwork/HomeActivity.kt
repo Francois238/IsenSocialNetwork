@@ -1,6 +1,7 @@
 package fr.isen.lesnullos.isensocialnetwork
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -39,8 +40,8 @@ class HomeActivity : AppCompatActivity() {
         binding.btnRegisterAccont.setOnClickListener {
             Toast.makeText(this, "Click Register", Toast.LENGTH_SHORT).show()
 
-           // val intent = Intent(this@HomeActivity, ProfileFormActivity::class.java)
-          //  startActivity(intent);
+            val intent = Intent(this@HomeActivity, ProfileFormActivity::class.java)
+            startActivity(intent)
         }
 
         binding.forgetpassword.setOnClickListener {
@@ -64,15 +65,15 @@ class HomeActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    //val id = user?.uid
-                    //val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
-                    // val editor = sharedPreferences.edit()
-                    // editor.putString("user_id", user?.uid)
-                    // editor.apply()
+                    user?.uid
+                    val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_id", user?.uid)
+                    editor.apply()
                     Log.d(ContentValues.TAG, "L'utilisateur est connecté: $user")
-                    Toast.makeText(this, "CLick Login", Toast.LENGTH_SHORT).show();
-                    val intent = Intent(this@HomeActivity, CreatePostActivity::class.java)
-                    startActivity(intent);
+                    Toast.makeText(this, "CLick Login", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@HomeActivity, WallActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Log.e(ContentValues.TAG, "Erreur de connexion: ${task.exception}")
                     // Affichez un message d'erreur en cas d'échec
@@ -80,32 +81,6 @@ class HomeActivity : AppCompatActivity() {
                     Log.e(ContentValues.TAG, "Code d'erreur: $errorCode")
                 }
             }
-
-
-        /*
-        // Envoyez les informations d'identification de l'utilisateur à Firebase pour la vérification
-        val auth = FirebaseAuth.getInstance(FirebaseApp.getInstance("firebase"))
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    //val id = user?.uid
-                    //val sharedPreferences = this.getSharedPreferences("user_id", Context.MODE_PRIVATE)
-                   // val editor = sharedPreferences.edit()
-                   // editor.putString("user_id", user?.uid)
-                   // editor.apply()
-                    Log.d(ContentValues.TAG, "L'utilisateur est connecté: $user")
-                    Toast.makeText(this, "CLick Login", Toast.LENGTH_SHORT).show();
-                   val intent = Intent(this@HomeActivity, CreatePostActivity::class.java)
-                   startActivity(intent);
-                } else {
-                    Log.e(ContentValues.TAG, "Erreur de connexion: ${task.exception}")
-                    // Affichez un message d'erreur en cas d'échec
-                    val errorCode = (task.exception as FirebaseAuthException).errorCode
-                    Log.e(ContentValues.TAG, "Code d'erreur: $errorCode")
-                }
-            }*/
-
 
     }
 
