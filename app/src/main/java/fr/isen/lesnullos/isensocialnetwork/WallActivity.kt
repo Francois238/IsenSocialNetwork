@@ -44,7 +44,6 @@ class WallActivity : AppCompatActivity() {
                 for (postSnapshot in snapshot.children) {
                     val recu = postSnapshot.getValue<Post>()
                     if (recu != null) {
-                        println("bdd : ${recu.nom}")
                         listPost.add(recu)
                     }
                 }

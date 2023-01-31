@@ -186,7 +186,7 @@ class CreatePostActivity : AppCompatActivity() {
                             val database = Firebase.database
                             val myRef = database.getReference("post")
 
-                            myRef.push().setValue(Post(text, url))
+                            myRef.push().setValue(Post(binding.nameUserPost.text.toString(), text, url))
                         }
                     }
             }

@@ -38,7 +38,8 @@ class DetailActivity : AppCompatActivity() {
         this.post  =
             (intent.extras!!.getBinder("Post") as ObjectWrapperForBinder?)!!.data as PostTransmis
 
-        binding.detailNomPost.text = post.post.nom
+        binding.detailBodyPost.text = post.post.body
+        binding.nomPoster.text = post.post.namePerson
 
         val imageView = findViewById<ImageView>(R.id.imagePost)
 
@@ -63,7 +64,7 @@ class DetailActivity : AppCompatActivity() {
                 for (postSnapshot in snapshot.children) {
                     val recu = postSnapshot.getValue<Post>()
                     if (recu != null) {
-                        println("bdd : ${recu.nom}")
+                        println("bdd : ${recu.body}")
                         listPost.add(recu)
                     }
                 }

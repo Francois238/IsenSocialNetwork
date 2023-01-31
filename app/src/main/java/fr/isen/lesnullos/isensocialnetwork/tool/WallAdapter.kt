@@ -60,7 +60,7 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
         val post: Post = listPost[position]
         // Set item views based on your views and data model
         val textView = viewHolder.nomPost
-        textView.text = post.nom
+        textView.text = post.body
 
         val imageView = viewHolder.iconePost
 

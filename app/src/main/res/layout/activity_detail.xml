@@ -7,12 +7,13 @@
     tools:context=".DetailActivity">
 
     <TextView
-        android:id="@+id/detailNomPost"
+        android:id="@+id/detailBodyPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="180dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailNomPost"
+        app:layout_constraintTop_toBottomOf="@+id/detailBodyPost"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -60,16 +61,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailNomPost" />
+        app:layout_constraintTop_toBottomOf="@+id/detailBodyPost" />
 
     <ImageView
         android:id="@+id/imagePost"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:layout_constraintBottom_toTopOf="@+id/detailNomPost"
+        app:layout_constraintBottom_toTopOf="@+id/detailBodyPost"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083"
         app:srcCompat="@drawable/capture_d_cran_2023_01_31___11_33_39" />
+
+    <TextView
+        android:id="@+id/nomPoster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePost" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
