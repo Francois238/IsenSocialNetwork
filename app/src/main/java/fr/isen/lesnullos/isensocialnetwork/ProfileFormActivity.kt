@@ -1,8 +1,12 @@
 package fr.isen.lesnullos.isensocialnetwork
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
@@ -11,29 +15,50 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityProfileFormBinding
 import fr.isen.lesnullos.isensocialnetwork.model.FormInscription
+import fr.isen.lesnullos.isensocialnetwork.model.Post
+import java.io.IOException
+import java.util.*
 
 class ProfileFormActivity : AppCompatActivity() {
     var name = ""
-    var email = ""
-    var passw = ""
-    var passc = ""
-    var birth = ""
-    var sexe = ""
+    private var email = ""
+    private var passw = ""
+    private var passc = ""
+    private var birth = ""
+    private var sexe = ""
 
     private lateinit var binding: ActivityProfileFormBinding
     private lateinit var auth: FirebaseAuth
+
+    private var filePath: Uri? = null
+
+    private val PICK_IMAGE_REQUEST = 22
+
+    private var storage: FirebaseStorage? = null
+    private var storageReference: StorageReference? = null
+
+    private var image = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_form)
 
+        storage = FirebaseStorage.getInstance()
+        storageReference = storage!!.reference
+
         binding = ActivityProfileFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonSignIn.setOnClickListener{
-            editText()
+            uploadImage()
+        }
+
+        binding.buttonChooseImage.setOnClickListener{
+            selectImage()
         }
     }
 
@@ -128,10 +153,108 @@ class ProfileFormActivity : AppCompatActivity() {
     }
 
     private fun userID(user:FirebaseUser){
-        val newUser = FormInscription(user.uid,name,birth,sexe)
+        val newUser = FormInscription(user.uid,name,birth,sexe, image)
         val database = Firebase.database
         val myRef = database.getReference("user")
 
         myRef.push().setValue(newUser)
+
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+    }
+
+
+
+    private fun selectImage() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(
+            Intent.createChooser(
+                intent,
+                "Select Image from here..."
+            ),
+            PICK_IMAGE_REQUEST
+        )
+    }
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(
+            requestCode,
+            resultCode,
+            data
+        )
+        if (requestCode == PICK_IMAGE_REQUEST && data != null && data.data != null) {
+            filePath = data.data
+            try {
+                val bitmap = MediaStore.Images.Media
+                    .getBitmap(
+                        contentResolver,
+                        filePath
+                    )
+
+                binding.iconeImageProfil.setImageBitmap(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+    private fun uploadImage() {
+        if (filePath != null) {
+            val progressDialog = ProgressDialog(this)
+            progressDialog.setTitle("Uploading...")
+            progressDialog.show()
+            val ref = storageReference
+                ?.child(
+                    "images/"
+                            + UUID.randomUUID().toString()
+                )
+            if (ref != null) {
+                ref.putFile(filePath!!)
+                    .addOnSuccessListener {
+                        progressDialog.dismiss()
+                        Toast
+                            .makeText(
+                                this@ProfileFormActivity,
+                                "Profil enregistre!!",
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                    .addOnFailureListener { e -> // Error, Image not uploaded
+                        progressDialog.dismiss()
+                        Toast
+                            .makeText(
+                                this@ProfileFormActivity,
+                                "Failed " + e.message,
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                    .addOnProgressListener { taskSnapshot ->
+                        val progress = (100.0
+                                * taskSnapshot.bytesTransferred
+                                / taskSnapshot.totalByteCount)
+                        progressDialog.setMessage(
+                            "Uploaded "
+                                    + progress.toInt() + "%"
+                        )
+                    }
+                    .addOnSuccessListener {
+                        ref.downloadUrl.addOnSuccessListener { uri ->
+                            val url = uri.toString()
+                            println("url acces : $url")
+                            image = url
+
+                            editText() //post to firebase
+
+                        }
+                    }
+            }
+        }
     }
 }

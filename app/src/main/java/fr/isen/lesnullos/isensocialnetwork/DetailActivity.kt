@@ -1,5 +1,7 @@
 package fr.isen.lesnullos.isensocialnetwork
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +9,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -27,7 +31,18 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var post : PostTransmis
 
+    private var nbLike =0
+
     var listPost = ArrayList<Post>()
+
+    private lateinit var auth: FirebaseAuth
+
+    private var user : FirebaseUser? = null
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+    private var id : String? = null
+    private var like = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +50,15 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+
         this.post  =
             (intent.extras!!.getBinder("Post") as ObjectWrapperForBinder?)!!.data as PostTransmis
+
+        user = auth.currentUser //recupere l'utilisateur connecté
+        user?.uid
+        sharedPreferences = getSharedPreferences("user_id", Context.MODE_PRIVATE)
+        id = sharedPreferences.getString("user_id", user?.uid)
 
         binding.detailBodyPost.text = post.post.body
         binding.nomPoster.text = post.post.namePerson
@@ -55,7 +77,7 @@ class DetailActivity : AppCompatActivity() {
 
 
 
-        Firebase.database.getReference("post").addValueEventListener(object :
+        Firebase.database.getReference("post").addValueEventListener(object : //recupere la liste des posts
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -71,6 +93,10 @@ class DetailActivity : AppCompatActivity() {
 
                 listPost.reverse()
 
+                preferenceUser()
+
+                gestionLike()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -79,7 +105,7 @@ class DetailActivity : AppCompatActivity() {
             }
         })
 
-        binding.boutonCht.setOnClickListener {
+        binding.boutonCht.setOnClickListener {//Ajout de commentaire
 
             val commentaire = binding.inputCommentaire.text.toString()
 
@@ -112,6 +138,45 @@ class DetailActivity : AppCompatActivity() {
             myRef.setValue(this.listPost)
         }
 
+        binding.like.setOnClickListener { //ajout d un like
+
+            if (!like){ //si le  user n'a pas deja liké
+
+                val listLike = post.post.like //recupere la liste des likes
+
+                if(listLike.isNullOrEmpty()){
+
+                    val newListLike = ArrayList<String>()
+
+                    if (id != null) {
+                        newListLike.add(id!!)
+                    }
+
+                    post.post.like = newListLike
+                }
+
+                else{
+                    if (id != null) {
+                        post.post.like?.add(id!!)
+                    }
+                }
+
+                this.gestionLike()
+
+                this.listPost[this.post.position] = this.post.post //mise a jour de la liste des posts
+
+                this.listPost.reverse()
+
+                val database = Firebase.database
+                val myRef = database.getReference("post") //envoie la liste des posts a la bdd
+
+                myRef.setValue(this.listPost)
+
+
+            }
+
+        }
+
 
     }
 
@@ -125,5 +190,35 @@ class DetailActivity : AppCompatActivity() {
         viewPost.adapter = adapter
         // Affichage de la liste
         viewPost.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun gestionLike(){
+
+        nbLike = post.post.like?.size ?: 0
+
+        binding.nbLike.text = nbLike.toString()
+
+    }
+
+    private fun preferenceUser(){
+
+        val listLike = post.post.like
+
+        if(listLike.isNullOrEmpty()){ //Si aucun like pour le post
+
+            binding.like.setImageResource(R.drawable.pouce)
+        }
+
+        else{
+            if (id != null) {
+                if(listLike.contains(id)){
+                    like = true
+                    binding.like.setImageResource(R.drawable.pouce_bleu) //si le user a deja like le post
+                }
+                else{
+                    binding.like.setImageResource(R.drawable.pouce) //si le user n'a pas like le post
+                }
+            }
+        }
     }
 }

@@ -1,35 +1,30 @@
 package fr.isen.lesnullos.isensocialnetwork
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityCreatePostBinding
-import fr.isen.lesnullos.isensocialnetwork.model.User
-import java.io.File
-import java.io.FileOutputStream
-import com.google.firebase.auth.FirebaseAuth
-import android.app.ProgressDialog
-import java.io.IOException
-import java.util.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityCreatePostBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
+import fr.isen.lesnullos.isensocialnetwork.model.User
+import java.io.IOException
+import java.util.*
 
 
 class CreatePostActivity : AppCompatActivity() {
@@ -38,8 +33,8 @@ class CreatePostActivity : AppCompatActivity() {
     private val myRef = database.getReference("user")
     private lateinit var auth: FirebaseAuth
 
-    var storage: FirebaseStorage? = null
-    var storageReference: StorageReference? = null
+    private var storage: FirebaseStorage? = null
+    private var storageReference: StorageReference? = null
 
     private var filePath: Uri? = null
 
@@ -52,8 +47,8 @@ class CreatePostActivity : AppCompatActivity() {
         binding = ActivityCreatePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage!!.reference;
+        storage = FirebaseStorage.getInstance()
+        storageReference = storage!!.reference
 
         val user = auth.currentUser
         user?.uid
@@ -85,11 +80,6 @@ class CreatePostActivity : AppCompatActivity() {
         binding.quittePost.setOnClickListener {
             val intent = Intent(this, WallActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.imageDocPost.setOnClickListener {
-            //one day maybe...
-            Toast.makeText( applicationContext, "Work in progress", Toast.LENGTH_SHORT).show()
         }
 
 
