@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun connectionUser(){
 
-        val emailEditText = findViewById<TextInputEditText>(R.id.mailaddress)
+        val emailEditText = findViewById<TextInputEditText>(R.id.nom)
         val passwordEditText = findViewById<TextInputEditText>(R.id.motdepasse)
 
         val email = emailEditText.text.toString()

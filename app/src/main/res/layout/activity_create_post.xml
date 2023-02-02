@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CreatePostActivity">
 
+
     <ImageView
         android:id="@+id/imageProfilPost"
         android:layout_width="102dp"
@@ -24,7 +25,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="nameUserPost"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toEndOf="@+id/imageProfilPost"
@@ -36,7 +38,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
-        android:background="#EC0E09"
+        android:backgroundTint="#F17556"
         android:text="X"
         app:iconTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:layout_width="110dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#F17556"
         android:text="Publier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.933"
@@ -57,9 +60,10 @@
         android:id="@+id/imagePicturePost"
         android:layout_width="65dp"
         android:layout_height="53dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/picture"
+        android:backgroundTint="#F17556"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
         app:layout_constraintVertical_bias="0.834" />
@@ -100,6 +104,18 @@
             app:hintAnimationEnabled="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/imageDocPost"
+        android:layout_width="61dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/doc"
+        android:backgroundTint="#F17556"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
+        app:layout_constraintVertical_bias="0.828" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="335dp"

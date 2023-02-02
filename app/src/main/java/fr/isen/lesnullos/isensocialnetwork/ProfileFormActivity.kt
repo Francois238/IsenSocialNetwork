@@ -17,7 +17,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityProfileFormBinding
+import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityInscriptionBinding
 import fr.isen.lesnullos.isensocialnetwork.model.FormInscription
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import java.io.IOException
@@ -31,7 +31,7 @@ class ProfileFormActivity : AppCompatActivity() {
     private var birth = ""
     private var sexe = ""
 
-    private lateinit var binding: ActivityProfileFormBinding
+    private lateinit var binding: ActivityInscriptionBinding
     private lateinit var auth: FirebaseAuth
 
     private var filePath: Uri? = null
@@ -45,12 +45,12 @@ class ProfileFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         auth = Firebase.auth
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_form)
+        setContentView(R.layout.activity_inscription)
 
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference
 
-        binding = ActivityProfileFormBinding.inflate(layoutInflater)
+        binding = ActivityInscriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonSignIn.setOnClickListener{
@@ -63,12 +63,12 @@ class ProfileFormActivity : AppCompatActivity() {
     }
 
     private fun editText (){
-        val editName = findViewById<TextView>(R.id.editNameSign)
-        val editEmail = findViewById<TextView>(R.id.editEmailSign)
-        val editPassw = findViewById<TextView>(R.id.editPasswordSign)
-        val editPassC = findViewById<TextView>(R.id.editConfirmSign)
-        val editBirth = findViewById<TextView>(R.id.editBirthSign)
-        val editSexe = findViewById<TextView>(R.id.editSexeSign)
+        val editName = findViewById<TextView>(R.id.identity)
+        val editEmail = findViewById<TextView>(R.id.adressemail)
+        val editPassw = findViewById<TextView>(R.id.password)
+        val editPassC = findViewById<TextView>(R.id.confpassword)
+        val editBirth = findViewById<TextView>(R.id.birthdate)
+        val editSexe = findViewById<TextView>(R.id.textsexe)
 
         name = editName.text.toString()
         email = editEmail.text.toString()
@@ -112,12 +112,13 @@ class ProfileFormActivity : AppCompatActivity() {
     }
 
     private fun handleErrorMessage() :String {
-        val editName = findViewById<TextView>(R.id.editNameSign)
-        val editEmail = findViewById<TextView>(R.id.editEmailSign)
-        val editPassw = findViewById<TextView>(R.id.editPasswordSign)
-        val editPassC = findViewById<TextView>(R.id.editConfirmSign)
-        val editBirth = findViewById<TextView>(R.id.editBirthSign)
-        val editSexe = findViewById<TextView>(R.id.editSexeSign)
+
+        val editName = findViewById<TextView>(R.id.identity)
+        val editEmail = findViewById<TextView>(R.id.adressemail)
+        val editPassw = findViewById<TextView>(R.id.password)
+        val editPassC = findViewById<TextView>(R.id.confpassword)
+        val editBirth = findViewById<TextView>(R.id.birthdate)
+        val editSexe = findViewById<TextView>(R.id.textsexe)
 
         name = editName.text.toString()
         email = editEmail.text.toString()
