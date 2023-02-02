@@ -6,39 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+
     <TextView
         android:id="@+id/detailBodyPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePost" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listeCommentaire"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutInputCommentaire"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailBodyPost"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutInputCommentaire"
         android:layout_width="336dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
         app:layout_constraintBottom_toTopOf="@+id/boutonCht"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -57,46 +56,43 @@
         android:id="@+id/boutonCht"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="412dp"
         android:backgroundTint="#F17556"
         android:text="Ajouter un commentaire"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailBodyPost" />
 
     <ImageView
         android:id="@+id/imagePost"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toTopOf="@+id/detailBodyPost"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
+        app:layout_constraintTop_toBottomOf="@+id/nomPoster"
         app:srcCompat="@drawable/capture_d_cran_2023_01_31___11_33_39" />
 
     <TextView
         android:id="@+id/nomPoster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePost" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/like"
         android:layout_width="40dp"
         android:layout_height="33dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
         android:background="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/imagePost"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagePost"
         app:srcCompat="@drawable/pouce" />
 
     <TextView
@@ -104,6 +100,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/listeCommentaire"
         app:layout_constraintEnd_toEndOf="@+id/like"
         app:layout_constraintStart_toStartOf="@+id/like"
         app:layout_constraintTop_toBottomOf="@+id/like" />

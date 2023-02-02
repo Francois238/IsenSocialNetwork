@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -63,12 +64,12 @@ class ProfileFormActivity : AppCompatActivity() {
     }
 
     private fun editText (){
-        val editName = findViewById<TextView>(R.id.identity)
-        val editEmail = findViewById<TextView>(R.id.adressemail)
-        val editPassw = findViewById<TextView>(R.id.password)
-        val editPassC = findViewById<TextView>(R.id.confpassword)
-        val editBirth = findViewById<TextView>(R.id.birthdate)
-        val editSexe = findViewById<TextView>(R.id.textsexe)
+        val editName = findViewById<EditText>(R.id.nom)
+        val editEmail = findViewById<EditText>(R.id.mail)
+        val editPassw = findViewById<EditText>(R.id.motdepasse)
+        val editPassC = findViewById<EditText>(R.id.confmotdepasse)
+        val editBirth = findViewById<EditText>(R.id.date)
+        val editSexe = findViewById<EditText>(R.id.sexe)
 
         name = editName.text.toString()
         email = editEmail.text.toString()
@@ -113,12 +114,12 @@ class ProfileFormActivity : AppCompatActivity() {
 
     private fun handleErrorMessage() :String {
 
-        val editName = findViewById<TextView>(R.id.identity)
-        val editEmail = findViewById<TextView>(R.id.adressemail)
-        val editPassw = findViewById<TextView>(R.id.password)
-        val editPassC = findViewById<TextView>(R.id.confpassword)
-        val editBirth = findViewById<TextView>(R.id.birthdate)
-        val editSexe = findViewById<TextView>(R.id.textsexe)
+        val editName = findViewById<EditText>(R.id.nom)
+        val editEmail = findViewById<EditText>(R.id.mail)
+        val editPassw = findViewById<EditText>(R.id.motdepasse)
+        val editPassC = findViewById<EditText>(R.id.confmotdepasse)
+        val editBirth = findViewById<EditText>(R.id.date)
+        val editSexe = findViewById<EditText>(R.id.sexe)
 
         name = editName.text.toString()
         email = editEmail.text.toString()
