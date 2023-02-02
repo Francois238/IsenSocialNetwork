@@ -28,6 +28,8 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nomPost: TextView = itemView.findViewById(R.id.nomPost)
         val iconePost : ImageView = itemView.findViewById(R.id.iconePost)
+        val iconeLike : ImageView = itemView.findViewById(R.id.iconePostLike)
+        val nbLike : TextView = itemView.findViewById(R.id.nbLikeList)
 
 
 
@@ -60,7 +62,7 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
         val post: Post = listPost[position]
         // Set item views based on your views and data model
         val textView = viewHolder.nomPost
-        textView.text = post.body
+        textView.text = post.title
 
         val imageView = viewHolder.iconePost
 
@@ -74,6 +76,15 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
             .centerCrop()
             .fit()
             .into(imageView)
+
+        val nbLike = viewHolder.nbLike
+        nbLike.text = post.like?.size.toString()
+
+        val iconeLike = viewHolder.iconeLike
+
+        iconeLike.setImageResource(R.drawable.pouce)
+
+
     }
 
 

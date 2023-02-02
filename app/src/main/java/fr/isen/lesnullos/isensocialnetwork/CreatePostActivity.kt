@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +21,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityCreatePostBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import fr.isen.lesnullos.isensocialnetwork.model.User
@@ -62,7 +64,19 @@ class CreatePostActivity : AppCompatActivity() {
                     val value = postSnapshot.getValue<User>()
                     if ((value != null) && (value.id == id)) {
                         val nameuser = value.name
+                        var photo = value.photo
                         binding.nameUserPost.text = nameuser
+
+                        val imageView = findViewById<ImageView>(R.id.imageProfilPost)
+
+                        if (photo == "") {
+                            photo ="a" // pour éviter l'erreur
+                        }
+                        Picasso.get().load(photo)
+                            .error(R.drawable.capture_d_cran_2023_01_31___11_33_39)
+                            .centerCrop()
+                            .fit()
+                            .into(imageView)
                     }
                 }
             }
@@ -171,12 +185,14 @@ class CreatePostActivity : AppCompatActivity() {
                             val url = uri.toString()
                             println("url acces : $url")
 
-                            val text = binding.texteInputPost.text.toString()
+                            val body = binding.texteInputPost.text.toString()
+
+                            val title = binding.titlePost.text.toString()
 
                             val database = Firebase.database
                             val myRef = database.getReference("post")
 
-                            myRef.push().setValue(Post(binding.nameUserPost.text.toString(), text, url))
+                            myRef.push().setValue(Post(binding.nameUserPost.text.toString(),title, body, url))
                         }
                     }
             }

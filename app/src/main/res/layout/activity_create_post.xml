@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quittePost"
-        tools:srcCompat="@drawable/userPicture" />
+        />
 
     <TextView
         android:id="@+id/nameUserPost"
@@ -60,10 +60,10 @@
         android:id="@+id/imagePicturePost"
         android:layout_width="65dp"
         android:layout_height="53dp"
-        android:layout_marginStart="40dp"
         android:background="@drawable/picture"
         android:backgroundTint="#F17556"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
         app:layout_constraintVertical_bias="0.834" />
@@ -84,7 +84,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="336dp"
-        android:layout_height="83dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,21 +105,9 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/imageDocPost"
-        android:layout_width="61dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="44dp"
-        android:background="@drawable/doc"
-        android:backgroundTint="#F17556"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
-        app:layout_constraintVertical_bias="0.828" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="335dp"
-        android:layout_height="47dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

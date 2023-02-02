@@ -62,6 +62,7 @@ class DetailActivity : AppCompatActivity() {
 
         binding.detailBodyPost.text = post.post.body
         binding.nomPoster.text = post.post.namePerson
+        binding.titlePostDetail.text = post.post.title
 
         val imageView = findViewById<ImageView>(R.id.imagePost)
 
