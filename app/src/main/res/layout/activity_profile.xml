@@ -66,10 +66,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <ImageView
         android:id="@+id/imageViewProfil"
@@ -120,7 +120,7 @@
         android:id="@+id/yourPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="148dp"
         android:layout_marginTop="76dp"
         android:text="Vos Posts"
         android:textColor="#F1542D"
