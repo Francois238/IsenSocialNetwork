@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,17 @@ class CreatePostActivity : AppCompatActivity() {
 
         binding = ActivityCreatePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        findViewById<ImageView>(R.id.accueil).setOnClickListener {
+            val intent = Intent(this@CreatePostActivity, WallActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        findViewById<Button>(R.id.editProfile).setOnClickListener {
+            val intent = Intent(this@CreatePostActivity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference

@@ -2,10 +2,12 @@ package fr.isen.lesnullos.isensocialnetwork
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +20,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityProfileBinding
-import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityWallBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import fr.isen.lesnullos.isensocialnetwork.model.User
 import fr.isen.lesnullos.isensocialnetwork.tool.PostAdapter
@@ -44,6 +45,22 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
+        findViewById<ImageView>(R.id.accueil).setOnClickListener {
+            val intent = Intent(this@ProfileActivity, WallActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<ImageView>(R.id.post).setOnClickListener {
+            val intent = Intent(this@ProfileActivity, CreatePostActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.editProfile).setOnClickListener {
+            val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
 
 
         Firebase.database.getReference("post").addValueEventListener(object :

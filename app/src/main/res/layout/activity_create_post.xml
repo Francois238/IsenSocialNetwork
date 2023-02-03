@@ -8,6 +8,37 @@
 
 
     <ImageView
+        android:id="@+id/accueil3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/accueil" />
+
+    <ImageView
+        android:id="@+id/newPost3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginBottom="20dp"
+        app:tint="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/plus" />
+
+    <ImageView
+        android:id="@+id/profile3"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
         android:id="@+id/imageProfilPost"
         android:layout_width="102dp"
         android:layout_height="88dp"
@@ -66,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPost"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.146" />
 
     <ImageView
         android:id="@+id/imageViewPost"
