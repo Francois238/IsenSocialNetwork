@@ -3,18 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/connexion"
+    android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F87FA8"
     tools:context=".ProfileFormActivity">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/SingInTitle"
@@ -177,12 +170,16 @@
         android:id="@+id/buttonSignIn"
         android:layout_width="322dp"
         android:layout_height="61dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#F3AF9E"
+
         android:text="Sign In"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/confpassword"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonChooseImage"

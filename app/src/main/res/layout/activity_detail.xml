@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
@@ -14,6 +15,7 @@
         android:layout_marginTop="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlePostDetail" />
 
@@ -23,9 +25,9 @@
         android:layout_height="168dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailBodyPost"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/detailBodyPost" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutInputCommentaire"
@@ -79,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,11 +89,10 @@
 
     <ImageView
         android:id="@+id/like"
-        android:layout_width="40dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
-        android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagePost"
         app:srcCompat="@drawable/pouce" />
@@ -105,15 +106,17 @@
         app:layout_constraintBottom_toTopOf="@+id/listeCommentaire"
         app:layout_constraintEnd_toEndOf="@+id/like"
         app:layout_constraintStart_toStartOf="@+id/like"
-        app:layout_constraintTop_toBottomOf="@+id/like" />
+        app:layout_constraintTop_toBottomOf="@+id/like"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/titlePostDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        android:fontFamily="cursive"
         android:text="TextView"
-        android:textSize="20sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

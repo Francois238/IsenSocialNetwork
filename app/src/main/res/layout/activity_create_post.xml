@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreatePostActivity">
+
 
 
     <ImageView
@@ -40,26 +42,25 @@
 
     <ImageView
         android:id="@+id/imageProfilPost"
-        android:layout_width="102dp"
-        android:layout_height="88dp"
+        android:layout_width="74dp"
+        android:layout_height="64dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quittePost"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/quittePost" />
 
     <TextView
         android:id="@+id/nameUserPost"
         android:layout_width="227dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="nameUserPost"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageProfilPost"
         app:layout_constraintTop_toBottomOf="@+id/publishButtonPost" />
 
@@ -92,7 +93,7 @@
         android:layout_width="65dp"
         android:layout_height="53dp"
         android:background="@drawable/picture"
-        android:backgroundTint="#F17556"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
