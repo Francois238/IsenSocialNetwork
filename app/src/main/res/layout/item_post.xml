@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textAlignment="center"
-        android:textColor="#F3EFEF"
+        android:textColor="#E91E63"
         android:textSize="20sp"
         android:textStyle="bold" />
 
