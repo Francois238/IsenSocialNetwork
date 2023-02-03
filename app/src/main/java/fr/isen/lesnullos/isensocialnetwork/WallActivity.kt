@@ -35,6 +35,10 @@ class WallActivity : AppCompatActivity() {
             startActivity(Intent(this@WallActivity, CreatePostActivity::class.java))
         }
 
+        binding.profile.setOnClickListener {
+            startActivity(Intent(this@WallActivity, ProfileActivity::class.java))
+        }
+
         Firebase.database.getReference("post").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
