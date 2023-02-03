@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -206,6 +207,20 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (menu != null) {
+            super.onCreateOptionsMenu(menu)
+        }
+        menuInflater.inflate(R.menu.mon_menu, menu)
+
+
+        val menuItem = menu?.findItem(R.id.menu_item_image)?.actionView
+
+
+        return true
+    }
+
 
     private fun displayCommentaire(){
 

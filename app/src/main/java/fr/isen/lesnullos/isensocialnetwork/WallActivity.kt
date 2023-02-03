@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -68,6 +69,18 @@ class WallActivity : AppCompatActivity() {
         })
 
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (menu != null) {
+            super.onCreateOptionsMenu(menu)
+        }
+        menuInflater.inflate(R.menu.mon_menu, menu)
+
+
+        val menuItem = menu?.findItem(R.id.menu_item_image)?.actionView
+
+
+        return true
     }
 
     private fun displayList(){

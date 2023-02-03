@@ -9,7 +9,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -116,6 +118,7 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
     }
+
     private fun selectImage() {
         val intent = Intent()
         intent.type = "image/*"
@@ -128,6 +131,20 @@ class CreatePostActivity : AppCompatActivity() {
             PICK_IMAGE_REQUEST
         )
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (menu != null) {
+            super.onCreateOptionsMenu(menu)
+        }
+        menuInflater.inflate(R.menu.mon_menu, menu)
+
+
+        val menuItem = menu?.findItem(R.id.menu_item_image)?.actionView
+
+
+        return true
+    }
+
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(
         requestCode: Int,
