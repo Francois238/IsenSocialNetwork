@@ -33,7 +33,7 @@ class WallActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.newPost.setOnClickListener{
+        binding.goNewPost.setOnClickListener{
             startActivity(Intent(this@WallActivity, CreatePostActivity::class.java))
         }
 

@@ -118,6 +118,8 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 val listMyPost = listPost.filter { it.namePerson == profil.name }
+                
+                binding.name.text = profil.name
 
                 var image = profil.photo
                 if (image==""){

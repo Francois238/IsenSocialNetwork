@@ -50,12 +50,12 @@ class CreatePostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        findViewById<ImageView>(R.id.accueil).setOnClickListener {
+        binding.accueil3.setOnClickListener {
             val intent = Intent(this@CreatePostActivity, WallActivity::class.java)
             startActivity(intent)
         }
 
-        findViewById<ImageView>(R.id.profile).setOnClickListener {
+        binding.profile3.setOnClickListener {
             val intent = Intent(this@CreatePostActivity, ProfileActivity::class.java)
             startActivity(intent)
         }
