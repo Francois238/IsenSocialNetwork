@@ -35,10 +35,12 @@ class WallActivity : AppCompatActivity() {
 
         binding.goNewPost.setOnClickListener{
             startActivity(Intent(this@WallActivity, CreatePostActivity::class.java))
+            overridePendingTransition(0, 0)
         }
 
         binding.profile.setOnClickListener {
             startActivity(Intent(this@WallActivity, ProfileActivity::class.java))
+            overridePendingTransition(0, 0)
         }
 
         Firebase.database.getReference("post").addValueEventListener(object :

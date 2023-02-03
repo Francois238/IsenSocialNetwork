@@ -50,11 +50,13 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.accueil).setOnClickListener {
             val intent = Intent(this@ProfileActivity, WallActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
         }
 
         findViewById<ImageView>(R.id.post).setOnClickListener {
             val intent = Intent(this@ProfileActivity, CreatePostActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
         }
 
         findViewById<Button>(R.id.editProfile).setOnClickListener {

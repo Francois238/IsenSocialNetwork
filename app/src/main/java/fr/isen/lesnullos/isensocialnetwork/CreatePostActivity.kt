@@ -53,11 +53,13 @@ class CreatePostActivity : AppCompatActivity() {
         binding.accueil3.setOnClickListener {
             val intent = Intent(this@CreatePostActivity, WallActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
         }
 
         binding.profile3.setOnClickListener {
             val intent = Intent(this@CreatePostActivity, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0)
         }
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference
