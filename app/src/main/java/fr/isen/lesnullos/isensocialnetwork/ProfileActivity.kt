@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityProfileBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import fr.isen.lesnullos.isensocialnetwork.model.User
+import fr.isen.lesnullos.isensocialnetwork.tool.CircleTransform
 import fr.isen.lesnullos.isensocialnetwork.tool.PostAdapter
 import fr.isen.lesnullos.isensocialnetwork.tool.WallAdapter
 
@@ -134,8 +135,8 @@ class ProfileActivity : AppCompatActivity() {
                     .error(R.drawable.capture_d_cran_2023_01_31___11_33_39)
                     .centerCrop()
                     .fit()
+                    .transform(CircleTransform())
                     .into(imageView)
-
                 displayList(listMyPost)
 
 
