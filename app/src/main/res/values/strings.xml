@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">IsenSocialNetwork</string>
+    <string name="app_name">ChefBook</string>
+    <string name="qu_allez_vous_raconter_aujourd_hui">Qu\'allez vous raconter aujourd\'hui ?</string>
+    <string name="titre_de_votre_post">Titre de votre post</string>
+    <string name="home">home</string>
+    <string name="plus">plus</string>
+    <string name="profile">profile</string>
+    <string name="profile_image">profile_image</string>
+    <string name="nameuserpost">nameUserPost</string>
+    <string name="x">X</string>
+    <string name="publier">Publier</string>
+    <string name="imagepicturepost">imagePicturePost</string>
+    <string name="imageviewpost">imageViewPost</string>
 </resources>
