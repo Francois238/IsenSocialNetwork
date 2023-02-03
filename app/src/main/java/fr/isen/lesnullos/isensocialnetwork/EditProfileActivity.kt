@@ -244,7 +244,7 @@ class EditProfileActivity : AppCompatActivity() {
                     myRef.setValue(listUser)
 
                     val intent = Intent(this@EditProfileActivity, WallActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent) //redirection vers la page d'accueil
                 }
 
             override fun onCancelled(error: DatabaseError) {
