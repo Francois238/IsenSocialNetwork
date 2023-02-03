@@ -49,19 +49,19 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        findViewById<ImageView>(R.id.accueil).setOnClickListener {
+        binding.accueil.setOnClickListener {
             val intent = Intent(this@ProfileActivity, WallActivity::class.java)
             startActivity(intent)
             overridePendingTransition(0, 0)
         }
 
-        findViewById<ImageView>(R.id.post).setOnClickListener {
+        binding.post.setOnClickListener {
             val intent = Intent(this@ProfileActivity, CreatePostActivity::class.java)
             startActivity(intent)
             overridePendingTransition(0, 0)
         }
 
-        findViewById<Button>(R.id.editProfile).setOnClickListener {
+        binding.editProfile.setOnClickListener {
             val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
             startActivity(intent)
         }
