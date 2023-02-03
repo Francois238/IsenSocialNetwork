@@ -176,6 +176,32 @@ class DetailActivity : AppCompatActivity() {
 
             }
 
+            else{
+
+                val listLike = post.post.like //recupere la liste des likes
+
+                if(!listLike.isNullOrEmpty() ){
+                    if (id != null) {
+                        post.post.like?.remove(id!!)
+                    }
+                }
+
+                this.gestionLike()
+
+                this.listPost[this.post.position] = this.post.post //mise a jour de la liste des posts
+
+                this.listPost.reverse()
+
+                val database = Firebase.database
+                val myRef = database.getReference("post") //envoie la liste des posts a la bdd
+
+                myRef.setValue(this.listPost)
+
+                like = false
+
+                preferenceUser()
+            }
+
         }
 
 
