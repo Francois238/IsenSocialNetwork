@@ -38,6 +38,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="52dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/accueil"
@@ -49,6 +50,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="188dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/plus"
@@ -60,9 +62,10 @@
         android:layout_height="35dp"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="20dp"
-        app:tint="#FEFEFE"
+        android:contentDescription="@string/profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        app:tint="#FEFEFE" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
