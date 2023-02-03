@@ -177,10 +177,10 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/imagePicturePost"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/newPost3"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
