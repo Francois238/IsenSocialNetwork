@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -15,10 +16,12 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityProfileBinding
 import fr.isen.lesnullos.isensocialnetwork.databinding.ActivityWallBinding
 import fr.isen.lesnullos.isensocialnetwork.model.Post
 import fr.isen.lesnullos.isensocialnetwork.model.User
+import fr.isen.lesnullos.isensocialnetwork.tool.PostAdapter
 import fr.isen.lesnullos.isensocialnetwork.tool.WallAdapter
 
 class ProfileActivity : AppCompatActivity() {
@@ -99,6 +102,19 @@ class ProfileActivity : AppCompatActivity() {
 
                 val listMyPost = listPost.filter { it.namePerson == profil.name }
 
+                var image = profil.photo
+                if (image==""){
+                    image ="a"
+                }
+
+                val imageView = findViewById<View>(R.id.imageViewProfil) as ImageView
+
+                Picasso.get().load(profil.photo)
+                    .error(R.drawable.capture_d_cran_2023_01_31___11_33_39)
+                    .centerCrop()
+                    .fit()
+                    .into(imageView)
+
                 displayList(listMyPost)
 
 
@@ -116,7 +132,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun displayList(listMyPost : List<Post>){
         // creation de l'adapter
-        val adapter = WallAdapter(listMyPost)
+        val adapter = PostAdapter(listMyPost)
 
         val viewPost =findViewById<View>(R.id.yourPostsList) as RecyclerView
 

@@ -78,7 +78,12 @@ class WallAdapter (private val listPost: List<Post>) : RecyclerView.Adapter<Wall
             .into(imageView)
 
         val nbLike = viewHolder.nbLike
-        nbLike.text = post.like?.size.toString()
+        if(post.like == null){
+            nbLike.text = "0"
+        }
+        else{
+            nbLike.text = post.like?.size.toString()
+        }
 
         val iconeLike = viewHolder.iconeLike
 

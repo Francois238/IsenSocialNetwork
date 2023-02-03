@@ -18,11 +18,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfil"
         app:layout_constraintVertical_bias="0.059" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewProfil"
         android:layout_width="125dp"
         android:layout_height="107dp"
         android:layout_marginStart="16dp"
