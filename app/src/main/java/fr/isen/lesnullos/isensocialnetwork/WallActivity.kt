@@ -33,16 +33,14 @@ class WallActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
-        findViewById<ImageView>(R.id.post).setOnClickListener {
-            val intent = Intent(this@WallActivity, CreatePostActivity::class.java)
-            startActivity(intent)
+        binding.post.setOnClickListener{
+            startActivity(Intent(this@WallActivity, CreatePostActivity::class.java))
         }
 
-        findViewById<Button>(R.id.editProfile).setOnClickListener {
-            val intent = Intent(this@WallActivity, EditProfileActivity::class.java)
-            startActivity(intent)
+        binding.profile.setOnClickListener {
+            startActivity(Intent(this@WallActivity, ProfileActivity::class.java))
         }
+
         Firebase.database.getReference("post").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
