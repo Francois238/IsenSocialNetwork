@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
         android:fontFamily="cursive"
-        android:text="ChiefBook"
+        android:text="ChefBook"
         android:textAlignment="center"
         android:textColor="#EA4E05"
         android:textSize="48sp"
