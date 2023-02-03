@@ -28,7 +28,7 @@
         app:tint="#2196F3" />
 
     <ImageView
-        android:id="@+id/post"
+        android:id="@+id/newPost"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="180dp"
