@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourPostsList" />
+
     <ImageView
         android:id="@+id/profile2"
         android:layout_width="45dp"
@@ -45,14 +59,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:text="Nom"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <ImageView
         android:id="@+id/imageViewProfil"
@@ -69,8 +84,8 @@
         android:id="@+id/editProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="#F17556"
         android:text="Éditer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,8 +93,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/yourPostsList"
-        android:layout_width="364dp"
-        android:layout_height="477dp"
+        android:layout_width="366dp"
+        android:layout_height="354dp"
         android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,19 +106,22 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="136dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfil" />
 
     <TextView
         android:id="@+id/yourPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="76dp"
         android:text="Vos Posts"
+        android:textColor="#F1542D"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
